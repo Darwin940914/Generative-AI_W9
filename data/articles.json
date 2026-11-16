@@ -1,0 +1,11 @@
+[
+  {
+    "id": "uva-10035",
+    "title": "UVa 10035 - Primary Arithmetic",
+    "category": "模擬",
+    "difficulty": "CPE 1顆星",
+    "date": "2026-11-17",
+    "path": "posts/uva-10035-primary-arithmetic.html",
+    "summary": "模擬直式加法算進位幾次，注意終止條件是兩個 0。"
+  }
+]

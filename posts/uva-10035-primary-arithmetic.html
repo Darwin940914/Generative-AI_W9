@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UVa 10035 - Primary Arithmetic | CP 刷題筆記本</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <h1 class="site-title"><a href="../index.html">CP 刷題筆記本</a></h1>
+        <p class="site-subtitle">CPE · UVa · LeetCode 解題紀錄與易錯點備忘</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <a class="back-link" href="../index.html">← 回到筆記列表</a>
+
+    <article class="post-article">
+      <header class="post-header">
+        <div class="card-meta">
+          <span class="tag-category">模擬</span>
+          <span class="tag-difficulty">CPE 1顆星</span>
+          <span class="card-date">2026-11-17</span>
+        </div>
+        <h1 class="post-title">UVa 10035 - Primary Arithmetic</h1>
+      </header>
+
+      <div class="post-content">
+        <h2>題目在問什麼</h2>
+        <p>每筆測資給兩個正整數（最多 10 位數），模擬小學直式加法從個位數一路往左加，算總共會發生幾次「進位」。當輸入的兩個數字都是 <code>0</code> 時結束程式。</p>
+
+        <h2>解題思路</h2>
+        <p>不用轉成字串，直接用迴圈每次取兩個數字的個位數（<code>a % 10</code> 跟 <code>b % 10</code>），再加上前一位留下來的進位值 <code>carry</code>。只要加起來大於等於 10，進位次數就加 1，然後把 <code>a</code> 跟 <code>b</code> 各自除以 10 繼續算下一位，直到兩個數都變成 0 為止。</p>
+        <p>時間複雜度為 $O(\log_{10}(\max(a, b)))$，每筆測資最多跑 10 次迴圈。</p>
+
+        <h2>C++ 程式碼</h2>
+        <pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long a, b;
+    while (cin &gt;&gt; a &gt;&gt; b) {
+        if (a == 0 &amp;&amp; b == 0) {
+            break;
+        }
+
+        int carry = 0;
+        int count = 0;
+
+        // 從個位數開始逐位相加，直到兩數都處理完
+        while (a &gt; 0 || b &gt; 0) {
+            int digit_a = a % 10;
+            int digit_b = b % 10;
+            int sum = digit_a + digit_b + carry;
+
+            if (sum &gt;= 10) {
+                carry = 1;
+                count++;
+            } else {
+                carry = 0;
+            }
+
+            a /= 10;
+            b /= 10;
+        }
+
+        if (count == 0) {
+            cout &lt;&lt; "No carry operation.\n";
+        } else if (count == 1) {
+            cout &lt;&lt; "1 carry operation.\n";
+        } else {
+            cout &lt;&lt; count &lt;&lt; " carry operations.\n";
+        }
+    }
+
+    return 0;
+}</code></pre>
+
+        <h2>易錯點</h2>
+        <ul>
+          <li><strong>輸出單複數不同</strong>：進位 1 次時是 <code>1 carry operation.</code>（沒有 s），2 次以上才是 <code>operations.</code>，0 次則是 <code>No carry operation.</code>，拼錯直接吃 WA。</li>
+          <li><strong>終止條件</strong>：題目允許其中一個數是 0（例如 <code>0 999</code>），所以不能寫 <code>while (a || b)</code> 當作輸入結束條件，必須明確判斷 <code>if (a == 0 &amp;&amp; b == 0) break;</code>。</li>
+          <li><strong>數值範圍</strong>：題目說少於 10 位數，開 <code>long long</code> 最保險，避免極端測資溢位。</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Built for Competitive Programming Practice · Hosted on GitHub Pages</p>
+    </div>
+  </footer>
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UVa 10035 - Primary Arithmetic | CP 刷題筆記本</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <h1 class="site-title"><a href="../index.html">CP 刷題筆記本</a></h1>
+        <p class="site-subtitle">CPE · UVa · LeetCode 解題紀錄與易錯點備忘</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <a class="back-link" href="../index.html">← 回到筆記列表</a>
+
+    <article class="post-article">
+      <header class="post-header">
+        <div class="card-meta">
+          <span class="tag-category">模擬</span>
+          <span class="tag-difficulty">CPE 1顆星</span>
+          <span class="card-date">2026-11-17</span>
+        </div>
+        <h1 class="post-title">UVa 10035 - Primary Arithmetic</h1>
+      </header>
+
+      <div class="post-content">
+        <h2>題目在問什麼</h2>
+        <p>每筆測資給兩個正整數（最多 10 位數），模擬小學直式加法從個位數一路往左加，算總共會發生幾次「進位」。當輸入的兩個數字都是 <code>0</code> 時結束程式。</p>
+
+        <h2>解題思路</h2>
+        <p>不用轉成字串，直接用迴圈每次取兩個數字的個位數（<code>a % 10</code> 跟 <code>b % 10</code>），再加上前一位留下來的進位值 <code>carry</code>。只要加起來大於等於 10，進位次數就加 1，然後把 <code>a</code> 跟 <code>b</code> 各自除以 10 繼續算下一位，直到兩個數都變成 0 為止。</p>
+        <p>時間複雜度為 $O(\log_{10}(\max(a, b)))$，每筆測資最多跑 10 次迴圈。</p>
+
+        <h2>C++ 程式碼</h2>
+        <pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long a, b;
+    while (cin &gt;&gt; a &gt;&gt; b) {
+        if (a == 0 &amp;&amp; b == 0) {
+            break;
+        }
+
+        int carry = 0;
+        int count = 0;
+
+        // 從個位數開始逐位相加，直到兩數都處理完
+        while (a &gt; 0 || b &gt; 0) {
+            int digit_a = a % 10;
+            int digit_b = b % 10;
+            int sum = digit_a + digit_b + carry;
+
+            if (sum &gt;= 10) {
+                carry = 1;
+                count++;
+            } else {
+                carry = 0;
+            }
+
+            a /= 10;
+            b /= 10;
+        }
+
+        if (count == 0) {
+            cout &lt;&lt; "No carry operation.\n";
+        } else if (count == 1) {
+            cout &lt;&lt; "1 carry operation.\n";
+        } else {
+            cout &lt;&lt; count &lt;&lt; " carry operations.\n";
+        }
+    }
+
+    return 0;
+}</code></pre>
+
+        <h2>易錯點</h2>
+        <ul>
+          <li><strong>輸出單複數不同</strong>：進位 1 次時是 <code>1 carry operation.</code>（沒有 s），2 次以上才是 <code>operations.</code>，0 次則是 <code>No carry operation.</code>，拼錯直接吃 WA。</li>
+          <li><strong>終止條件</strong>：題目允許其中一個數是 0（例如 <code>0 999</code>），所以不能寫 <code>while (a || b)</code> 當作輸入結束條件，必須明確判斷 <code>if (a == 0 &amp;&amp; b == 0) break;</code>。</li>
+          <li><strong>數值範圍</strong>：題目說少於 10 位數，開 <code>long long</code> 最保險，避免極端測資溢位。</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Built for Competitive Programming Practice · Hosted on GitHub Pages</p>
+    </div>
+  </footer>
+</body>
+</html>

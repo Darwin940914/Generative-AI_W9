@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CP 刷題筆記本 | CPE / UVa / LeetCode</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <h1 class="site-title"><a href="index.html">CP 刷題筆記本</a></h1>
+        <p class="site-subtitle">CPE · UVa · LeetCode 解題紀錄與易錯點備忘</p>
+      </div>
+      <div class="stats-badge" id="article-count">載入中...</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls-bar" aria-label="篩選與搜尋">
+      <div class="filter-group" id="category-filters">
+        <button type="button" class="filter-btn active" data-category="all">全部</button>
+      </div>
+      <div class="search-box">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="搜尋題號、標題或關鍵字..."
+          aria-label="搜尋筆記"
+        />
+      </div>
+    </section>
+
+    <section class="articles-grid" id="articles-grid" aria-live="polite">
+      <!-- 文章卡片由 assets/app.js 讀取 data/articles.json 動態產生 -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Built for Competitive Programming Practice · Hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
